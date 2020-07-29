@@ -20,4 +20,4 @@ localhost:18088/server/user/add
 
 ## 代码生成器
 - 执行MpGenerator类里面的main方法（先修改main方法里面的配置）
-- 然后将temp文件下面的文件拷贝到对应的目录下面
+- 然后将temp文件下面的文件拷贝到对应的目录下面即可

@@ -10,11 +10,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.SpringVersion;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 启动类
  */
+@EnableWebSecurity
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan("com.ccljjk.server.mapper")
