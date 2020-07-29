@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 /**
  * 启动类
  */
-@EnableWebSecurity
+// @EnableWebSecurity
 @SpringBootApplication
 @EnableTransactionManagement
 @MapperScan("com.ccljjk.server.mapper")

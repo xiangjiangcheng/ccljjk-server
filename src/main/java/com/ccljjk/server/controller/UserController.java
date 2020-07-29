@@ -11,6 +11,7 @@ import com.ccljjk.server.model.validator.UserValidator;
 import com.ccljjk.server.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/user")
+@PreAuthorize("hasRole('USER')")
 public class UserController {
 
     @Autowired
@@ -71,7 +73,7 @@ public class UserController {
      * @param userId 用户ID
      * @return 用户详情
      */
-    @GetMapping("/{userId}")
+    @GetMapping(value = "/{userId}", produces = "text/plain;charset=UTF-8")
     public ResponseResult get(@PathVariable("userId") String userId) {
 
         // 业务处理

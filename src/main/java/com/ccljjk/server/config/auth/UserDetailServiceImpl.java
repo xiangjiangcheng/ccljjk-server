@@ -1,6 +1,8 @@
 package com.ccljjk.server.config.auth;
 
 import com.ccljjk.server.mapper.UserMapper;
+import com.ccljjk.server.model.constant.RoleAuthorityConstants;
+import com.ccljjk.server.model.constant.RoleConstants;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -11,8 +13,12 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+/**
+ * 自定义用户实现类
+ */
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
@@ -22,16 +28,25 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         // 这里可以捕获异常，使用异常映射，抛出指定的提示信息
-        // 用户校验的操作
-        // 假设密码是数据库查询的 123
-        String password = "$2a$10$XcigeMfToGQ2bqRToFtUi.sG1V.HhrJV6RBjji1yncXReSNNIPl1K";
+        if (username == null || username.trim().length() <= 0) {
+            throw new UsernameNotFoundException("用户名为空");
+        }
 
-        // 假设角色是数据库查询的
+        // 从数据库查询用户
         com.ccljjk.server.entity.User user = userMapper.findUserByName(username);
-        List<String> roleList = new ArrayList<>();
-        roleList.add("ROLE_LEVEL1");
-        roleList.add("ROLE_LEVEL2");
-        roleList.add("ROLE_LEVEL3");
+        if (user == null) {
+            throw new UsernameNotFoundException("用户不存在!");
+        }
+        String password = user.getPassword();
+
+        // 根据用户角色查询用户权限
+        List<String> roleList;
+        if (RoleConstants.ADMIN.equals(user.getRole())) {
+            roleList = Arrays.asList(RoleAuthorityConstants.ADMIN.split(","));
+        } else {
+            roleList = Arrays.asList(RoleAuthorityConstants.USER.split(","));
+        }
+
         List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
         /*
          * Spring Boot 2.0 版本踩坑
@@ -39,7 +54,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
          * 如果不加前缀一般就会出现403错误
          * 在给用户赋权限时,数据库存储必须是完整的权限标识ROLE_LEVEL1
          */
-        if (roleList != null && roleList.size() > 0) {
+        if (roleList.size() > 0) {
             for (String role : roleList) {
                 grantedAuthorityList.add(new SimpleGrantedAuthority(role));
             }

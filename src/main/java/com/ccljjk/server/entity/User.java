@@ -29,6 +29,12 @@ public class User implements Serializable {
     private String name;
 
     /**
+     * 登录密码
+     */
+    @TableField("password")
+    private String password;
+
+    /**
      * 年龄
      */
     @TableField("age")
@@ -41,9 +47,17 @@ public class User implements Serializable {
     private String email;
 
     /**
+     * 用户角色  ADMIN:超级管理员  USER:普通用户
+     */
+    @TableField("role")
+    private String role;
+
+    /**
      * 删除标志： 1删除  0：未删除
      */
     @TableField("deleted")
     @TableLogic
     private Integer deleted;
+
+
 }
