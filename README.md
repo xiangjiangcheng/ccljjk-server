@@ -2,6 +2,26 @@
 > 
 > spring boot 2.3 +  mybatis + mybatis-plus
 
+## security
+
+用户名：Jone   密码：admin
+先登录，再访问接口
+
+
+登录访问接口： 
+```
+url:  localhost:18088/server/login
+method: post
+参数： 
+username = Jone
+password = admin
+
+
+```
+
+
+
+
 
 ## Restful风格
 
