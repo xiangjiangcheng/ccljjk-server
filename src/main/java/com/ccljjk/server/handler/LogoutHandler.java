@@ -18,6 +18,6 @@ public class LogoutHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response,
                                 Authentication authentication) throws IOException, ServletException {
         response.setContentType(MediaType.APPLICATION_JSON_UTF8_VALUE);
-        response.getWriter().write("{\"code\": \"200\", \"msg\": \"退出系统成功\"}");
+        response.getWriter().write("{\"code\": \"200\", \"msg\": \"注销登录成功\"}");
     }
 }

@@ -16,7 +16,7 @@ public interface UserService extends IService<User> {
      * @return
      * @param request
      */
-    int addUser(UserFormRequest request);
+    void insertOrUpdate(UserFormRequest request);
 
     UserDetailResponse getUserDetailById(String userId);
 }

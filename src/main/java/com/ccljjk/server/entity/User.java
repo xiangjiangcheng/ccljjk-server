@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 用户表
@@ -23,10 +24,16 @@ public class User implements Serializable {
     private Long id;
 
     /**
-     * 用户名
+     * 用户姓名
      */
     @TableField("name")
     private String name;
+
+    /**
+     * 手机号，用户登录时输入的用户名
+     */
+    @TableField("phone")
+    private String phone;
 
     /**
      * 登录密码
@@ -41,6 +48,12 @@ public class User implements Serializable {
     private Integer age;
 
     /**
+     * 性别 性别 F: 女 M:男
+     */
+    @TableField("gender")
+    private String gender;
+
+    /**
      * 邮箱
      */
     @TableField("email")
@@ -51,6 +64,18 @@ public class User implements Serializable {
      */
     @TableField("role")
     private String role;
+
+    /**
+     * 创建时间
+     */
+    @TableField("created_time")
+    private Date createdTime;
+
+    /**
+     * 最后修改时间
+     */
+    @TableField("modified_time")
+    private Date modifiedTime;
 
     /**
      * 删除标志： 1删除  0：未删除
