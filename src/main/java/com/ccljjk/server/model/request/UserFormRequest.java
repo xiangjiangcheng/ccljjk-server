@@ -45,6 +45,11 @@ public class UserFormRequest {
      */
     private String role;
 
+    /**
+     * 邮箱
+     */
+    private String email;
+
     public boolean isAdd() {
         return id == null;
     }

@@ -39,6 +39,9 @@ public class UserAssembler {
             user.setPhone(phone);
             user.setAge(request.getAge());
             user.setRole(request.getRole());
+            user.setGender(request.getGender());
+            user.setEmail(request.getEmail());
+            user.setDeleted(0);
 
             // 密码
             // 进行强哈希加密
@@ -61,6 +64,8 @@ public class UserAssembler {
             user.setName(request.getName());
             user.setGender(request.getGender());
             user.setRole(request.getRole());
+            user.setEmail(request.getEmail());
+            user.setAge(request.getAge());
         }
     }
 }

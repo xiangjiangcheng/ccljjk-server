@@ -18,7 +18,30 @@ password = admin
 
 
 ```
+新增用户接口：
+```
+url:  localhost:18088/server/user/insertOrUpdate
+method: post
 
+请求参数：
+{
+    "name": "admin",
+    "phone": "17783715510",
+    "password": "",  
+    "gender": "M",
+    "role": "ADMIN",
+    "age": 20
+}
+
+注意：password为空时，默认取手机号后6位作为密码！！
+
+响应结果：
+{
+    "code": "00",
+    "message": "success"
+}
+
+```
 
 
 
