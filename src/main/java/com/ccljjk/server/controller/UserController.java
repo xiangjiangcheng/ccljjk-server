@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * 用户控制器
  *
- * @Author Jiangcheng Xiang
+ * @Author Xiang Jiangcheng
  */
 @RestController
 @RequestMapping("/user")
@@ -46,7 +46,7 @@ public class UserController {
      * 新增或者修改用户
      *
      * @param request 新增/修改用户参数
-     * @return reponse
+     * @return response
      */
     @PostMapping("/insertOrUpdate")
     public ResponseResult insertOrUpdate(@RequestBody UserFormRequest request) {
@@ -76,6 +76,7 @@ public class UserController {
         // 返回结果
         return ResponseResult.ok(response);
     }
+
 
 
 }

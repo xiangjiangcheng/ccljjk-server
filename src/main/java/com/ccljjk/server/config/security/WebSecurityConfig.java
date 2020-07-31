@@ -1,4 +1,4 @@
-package com.ccljjk.server.config.auth;
+package com.ccljjk.server.config.security;
 
 import com.ccljjk.server.handler.*;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,11 +1,11 @@
-package com.ccljjk.server.config.auth;
+package com.ccljjk.server.config.security;
 
 import com.ccljjk.server.mapper.UserMapper;
 import com.ccljjk.server.model.constant.RoleAuthorityConstants;
 import com.ccljjk.server.model.constant.RoleConstants;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +19,7 @@ import java.util.List;
 /**
  * 自定义用户实现类
  */
+@Data
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
 
@@ -59,6 +60,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
                 grantedAuthorityList.add(new SimpleGrantedAuthority(role));
             }
         }
-        return new User(username, password, grantedAuthorityList);
+
+        String name = user.getName();
+        String gender = user.getGender();
+        Integer age = user.getAge();
+        return new LoginUser(username, password, grantedAuthorityList, name, username, gender, age);
     }
 }
