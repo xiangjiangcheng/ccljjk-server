@@ -1,8 +1,11 @@
 package com.ccljjk.server.model.assembler;
 
 import com.ccljjk.server.entity.User;
+import com.ccljjk.server.model.request.UserFormRequest;
 import com.ccljjk.server.model.response.UserDetailResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -25,5 +28,44 @@ public class UserAssembler {
             return response;
         }
         return null;
+    }
+
+    public User toUser(UserFormRequest request) {
+        if (request != null) {
+            User user = new User();
+
+            String phone = request.getPhone();
+            user.setName(request.getName());
+            user.setPhone(phone);
+            user.setAge(request.getAge());
+            user.setRole(request.getRole());
+            user.setGender(request.getGender());
+            user.setEmail(request.getEmail());
+            user.setDeleted(0);
+
+            // 密码
+            // 进行强哈希加密
+            String password = request.getPassword();
+            if (StringUtils.isEmpty(password)) {
+                // 没设置密码，默认取手机号后六位
+                password = phone.substring(5);
+            }
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(password.trim()));
+
+            return user;
+        }
+
+        return null;
+    }
+
+    public void toUpdateUser(User user, UserFormRequest request) {
+        if (request != null) {
+            user.setName(request.getName());
+            user.setGender(request.getGender());
+            user.setRole(request.getRole());
+            user.setEmail(request.getEmail());
+            user.setAge(request.getAge());
+        }
     }
 }

@@ -30,7 +30,9 @@ public enum ErrorEnums {
 
     PARAM_NOT_ENOUGH("11000", "参数不足"),
 
-    NO_USER("1000", "用户不存在");
+    NO_USER("1000", "用户不存在"),
+
+    USER_IS_EXISTS("1001", "用户存在");
 
     /**
      * 错误码

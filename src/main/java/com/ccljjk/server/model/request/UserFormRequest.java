@@ -10,8 +10,48 @@ import lombok.Data;
 @Data
 public class UserFormRequest {
 
+    /**
+     * 用户ID
+     */
+    private Long id;
+
+    /**
+     * 姓名
+     */
     private String name;
 
+    /**
+     * 手机号
+     */
+    private String phone;
+
+    /**
+     * 密码，若未设置，默认为手机号后6位
+     */
+    private String password;
+
+    /**
+     * 性别
+     */
+    private String gender;
+
+    /**
+     * 年龄
+     */
     private int age;
+
+    /**
+     * 角色
+     */
+    private String role;
+
+    /**
+     * 邮箱
+     */
+    private String email;
+
+    public boolean isAdd() {
+        return id == null;
+    }
 
 }
